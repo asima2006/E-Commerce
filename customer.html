@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders – चैतन्या श्री डेरी फार्म</title>
+  <link rel="stylesheet" href="css/customer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="cust-header">
+  <a href="index.html" class="brand">
+    <span>🐄</span>
+    <div>
+      <h2>चैतन्या श्री डेरी</h2>
+      <small>Pure Farm Direct</small>
+    </div>
+  </a>
+  <div class="cust-header-actions">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#order"><i class="fas fa-plus"></i> New Order</a>
+    <button class="btn-logout-cust" onclick="custLogout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="cust-layout">
+
+  <!-- PROFILE SIDEBAR -->
+  <aside>
+    <div class="cust-profile-card">
+      <div class="profile-banner"></div>
+      <div class="profile-info">
+        <div class="profile-avatar" id="profileAvatar">?</div>
+        <div class="profile-name" id="profileName">Loading...</div>
+        <div class="profile-phone" id="profilePhone"></div>
+        <div class="profile-stats">
+          <div class="p-stat"><div class="num" id="totalOrdersCount">0</div><div class="lbl">Orders</div></div>
+          <div class="p-stat"><div class="num" id="totalSpent">₹0</div><div class="lbl">Spent</div></div>
+        </div>
+        <nav class="cust-nav">
+          <button class="cust-nav-item active" onclick="showCustSection('orders', this)">
+            <i class="fas fa-shopping-bag"></i> My Orders
+          </button>
+          <button class="cust-nav-item" onclick="showCustSection('subscriptions', this)">
+            <i class="fas fa-calendar-alt"></i> My Subscriptions
+          </button>
+          <button class="cust-nav-item" onclick="showCustSection('profile', this)">
+            <i class="fas fa-user"></i> My Profile
+          </button>
+          <button class="cust-nav-item" onclick="showCustSection('neworder', this)">
+            <i class="fas fa-plus-circle"></i> New Order
+          </button>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="cust-main">
+
+    <!-- ORDERS SECTION -->
+    <section class="cust-section active" id="cust-orders">
+      <div class="cust-card">
+        <div class="cust-card-header">
+          <h3><i class="fas fa-shopping-bag"></i> <span class="hindi-text">मेरे ऑर्डर</span></h3>
+        </div>
+        <div class="cust-card-body">
+          <div class="order-list" id="custOrderList">
+            <p style="text-align:center;color:#7a7a7a;padding:32px;" class="hindi-text">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIPTIONS SECTION -->
+    <section class="cust-section" id="cust-subscriptions">
+      <div class="cust-card">
+        <div class="cust-card-header">
+          <h3><i class="fas fa-calendar-alt"></i> <span class="hindi-text">मेरे Subscription</span></h3>
+          <a href="index.html#subscription" class="btn-reorder" style="text-decoration:none;">
+            <i class="fas fa-plus"></i> New Plan
+          </a>
+        </div>
+        <div class="cust-card-body">
+          <div class="sub-list" id="custSubList">
+            <p style="text-align:center;color:#7a7a7a;padding:32px;" class="hindi-text">कोई subscription नहीं</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE SECTION -->
+    <section class="cust-section" id="cust-profile">
+      <div class="cust-card">
+        <div class="cust-card-header">
+          <h3><i class="fas fa-user"></i> <span class="hindi-text">मेरी प्रोफाइल</span></h3>
+        </div>
+        <div class="cust-card-body" id="profileContent">
+          <p style="text-align:center;color:#7a7a7a;padding:32px;">Loading...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW ORDER SECTION -->
+    <section class="cust-section" id="cust-neworder">
+      <div class="cust-card">
+        <div class="cust-card-header">
+          <h3><i class="fas fa-shopping-cart"></i> <span class="hindi-text">नया ऑर्डर</span></h3>
+        </div>
+        <div class="cust-card-body">
+          <form id="custOrderForm" onsubmit="placeNewOrder(event)" style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div>
+                <label style="font-size:.82rem;font-weight:600;color:#2d7a1a;margin-bottom:6px;display:block;" class="hindi-text">प्रोडक्ट</label>
+                <select id="custProduct" required style="width:100%;padding:11px 14px;border:1.5px solid rgba(45,122,26,0.2);border-radius:8px;outline:none;font-size:.9rem;" onchange="updateCustTotal()">
+                  <option value="">-- चुनें --</option>
+                  <option value="A2 देसी गाय का दूध" data-price="70">🥛 A2 दूध – ₹70/लीटर</option>
+                  <option value="बिलौना देसी घी" data-price="1400">🧈 बिलौना घी – ₹1400/किलो</option>
+                  <option value="ताज़ा पनीर" data-price="380">🧀 ताज़ा पनीर – ₹380/किलो</option>
+                  <option value="घर जैसा दही" data-price="90">🥣 घर जैसा दही – ₹90/किलो</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:.82rem;font-weight:600;color:#2d7a1a;margin-bottom:6px;display:block;" class="hindi-text">मात्रा</label>
+                <input type="number" id="custQty" placeholder="जैसे: 2" min="0.5" step="0.5" required style="width:100%;padding:11px 14px;border:1.5px solid rgba(45,122,26,0.2);border-radius:8px;outline:none;font-size:.9rem;" oninput="updateCustTotal()" />
+              </div>
+            </div>
+            <div>
+              <label style="font-size:.82rem;font-weight:600;color:#2d7a1a;margin-bottom:6px;display:block;" class="hindi-text">भुगतान</label>
+              <select id="custPayment" required style="width:100%;padding:11px 14px;border:1.5px solid rgba(45,122,26,0.2);border-radius:8px;outline:none;font-size:.9rem;">
+                <option value="UPI">UPI</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="WhatsApp Pay">WhatsApp Pay</option>
+              </select>
+            </div>
+            <div id="custTotalBox" style="display:none;background:linear-gradient(135deg,var(--green-main),var(--green-light));color:white;padding:12px 20px;border-radius:8px;font-weight:700;text-align:center;" class="hindi-text"></div>
+            <button type="submit" style="background:linear-gradient(135deg,#2d7a1a,#4caf50);color:white;padding:14px;border-radius:50px;font-weight:700;font-size:1rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;" class="hindi-text">
+              <i class="fab fa-whatsapp"></i> WhatsApp पर ऑर्डर करें
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function sanitize(str) { return String(str).replace(/<[^>]*>/g, '').trim(); }
+function validatePhone(p) { return /^[6-9][0-9]{9}$/.test(p.replace(/\s/g, '')); }
+function storeGet(k, d = null) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }
+function storeSet(k, v)        { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+
+const PRODUCTS = {
+  'A2 देसी गाय का दूध': { price: 70,   unit: 'लीटर', emoji: '🥛' },
+  'बिलौना देसी घी':     { price: 1400, unit: 'किलो', emoji: '🧈' },
+  'ताज़ा पनीर':          { price: 380,  unit: 'किलो', emoji: '🧀' },
+  'घर जैसा दही':         { price: 90,   unit: 'किलो', emoji: '🥣' },
+};
+const WA = '917878066868';
+
+let currentUser = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const auth = storeGet('csdf_cust_auth');
+  if (!auth || !auth.loggedIn) { window.location.href = 'login.html'; return; }
+  currentUser = auth;
+  loadProfile();
+  loadOrders();
+  loadSubs();
+});
+
+function loadProfile() {
+  const orders = storeGet('csdf_orders', []).filter(o => o.phone === currentUser.phone);
+  const spent  = orders.reduce((s, o) => s + (parseFloat(o.total) || 0), 0);
+  const initial = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : '?';
+
+  document.getElementById('profileAvatar').textContent = initial;
+  document.getElementById('profileName').textContent   = currentUser.name || 'Guest';
+  document.getElementById('profilePhone').textContent  = '+91 ' + currentUser.phone;
+  document.getElementById('totalOrdersCount').textContent = orders.length;
+  document.getElementById('totalSpent').textContent       = '₹' + spent.toLocaleString('hi-IN');
+
+  const customers = storeGet('csdf_customers', {});
+  const cust = customers[currentUser.phone] || {};
+  const profileContent = document.getElementById('profileContent');
+  if (profileContent) {
+    profileContent.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;">
+          <span style="color:#7a7a7a;font-weight:600;">नाम</span><span style="font-weight:700;">${escH(cust.name || currentUser.name)}</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;">
+          <span style="color:#7a7a7a;font-weight:600;">मोबाइल</span><span style="font-weight:700;">${escH(currentUser.phone)}</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;">
+          <span style="color:#7a7a7a;font-weight:600;">पता</span><span style="font-weight:700;">${escH(cust.address || 'N/A')}</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;">
+          <span style="color:#7a7a7a;font-weight:600;">कुल ऑर्डर</span><span style="font-weight:700;color:#2d7a1a;">${orders.length}</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:.9rem;">
+          <span style="color:#7a7a7a;font-weight:600;">कुल खर्च</span><span style="font-weight:700;color:#2d7a1a;">₹${spent.toLocaleString('hi-IN')}</span></div>
+      </div>`;
+  }
+}
+
+function loadOrders() {
+  const orders = storeGet('csdf_orders', []).filter(o => o.phone === currentUser.phone);
+  const list   = document.getElementById('custOrderList');
+  if (!list) return;
+  if (!orders.length) {
+    list.innerHTML = '<p style="text-align:center;color:#7a7a7a;padding:32px;" class="hindi-text">अभी तक कोई ऑर्डर नहीं है।<br><a href="index.html#products" style="color:#2d7a1a;font-weight:600;">अभी ऑर्डर करें →</a></p>';
+    return;
+  }
+  list.innerHTML = orders.map(o => `
+    <div class="order-item">
+      <div class="order-item-header">
+        <div class="order-id">Order <strong>#${escH(o.id)}</strong></div>
+        <span class="status-badge ${o.status}">${o.status}</span>
+        <div class="order-date">${new Date(o.timestamp).toLocaleString('hi-IN')}</div>
+      </div>
+      <div class="order-item-body">
+        <div class="order-product">
+          <div class="order-product-icon">${PRODUCTS[o.product]?.emoji || '🛒'}</div>
+          <div>
+            <div class="order-product-name hindi-text">${escH(o.product)}</div>
+            <div class="order-product-qty hindi-text">मात्रा: ${escH(String(o.qty))} ${PRODUCTS[o.product]?.unit || ''}</div>
+          </div>
+        </div>
+        <div>
+          <div class="order-amount">₹${escH(String(o.total))}</div>
+          <div class="order-payment">${escH(o.payment)}</div>
+        </div>
+      </div>
+      <div class="order-item-footer">
+        <button class="btn-reorder hindi-text" onclick="reorder('${escH(o.product)}', ${PRODUCTS[o.product]?.price || 0})">
+          <i class="fas fa-redo"></i> फिर ऑर्डर करें
+        </button>
+        <button class="btn-invoice" onclick="generateCustInvoice('${escH(o.id)}')">
+          <i class="fas fa-file-pdf"></i> Invoice
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+function loadSubs() {
+  const subs = storeGet('csdf_subscriptions', []).filter(s => s.phone === currentUser.phone);
+  const list = document.getElementById('custSubList');
+  if (!list) return;
+  if (!subs.length) {
+    list.innerHTML = '<p style="text-align:center;color:#7a7a7a;padding:32px;" class="hindi-text">कोई subscription नहीं है।<br><a href="index.html#subscription" style="color:#2d7a1a;font-weight:600;">Subscribe करें →</a></p>';
+    return;
+  }
+  list.innerHTML = subs.map(s => `
+    <div class="sub-item ${s.status === 'active' ? 'active-sub' : ''}">
+      <div class="sub-item-info">
+        <div class="sub-item-icon">${s.plan === 'weekly-ghee' ? '🧈' : s.plan === 'family-combo' ? '⭐' : '🥛'}</div>
+        <div>
+          <div class="sub-item-name hindi-text">${escH(s.planName || s.plan)}</div>
+          <div class="sub-item-detail">शुरुआत: ${s.startDate ? new Date(s.startDate).toLocaleDateString('hi-IN') : 'N/A'}</div>
+        </div>
+      </div>
+      <div class="sub-item-price">₹${escH(String(s.price))}<small>/महीना</small></div>
+      <span class="status-badge ${s.status}">${s.status}</span>
+    </div>`).join('');
+}
+
+function showCustSection(id, el) {
+  document.querySelectorAll('.cust-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.cust-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('cust-' + id)?.classList.add('active');
+  el.classList.add('active');
+}
+
+function reorder(product, price) {
+  showCustSection('neworder', document.querySelectorAll('.cust-nav-item')[3]);
+  const sel = document.getElementById('custProduct');
+  if (sel) {
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === product) { sel.selectedIndex = i; break; }
+    }
+    updateCustTotal();
+  }
+}
+
+function updateCustTotal() {
+  const sel = document.getElementById('custProduct');
+  const qty = parseFloat(document.getElementById('custQty')?.value) || 0;
+  const opt = sel?.options[sel.selectedIndex];
+  const price = parseFloat(opt?.dataset.price) || 0;
+  const box = document.getElementById('custTotalBox');
+  if (box) {
+    if (price > 0 && qty > 0) {
+      box.style.display = 'block';
+      box.textContent = `🧾 कुल मूल्य: ₹${(price * qty).toFixed(0)}`;
+    } else {
+      box.style.display = 'none';
+    }
+  }
+}
+
+function placeNewOrder(e) {
+  e.preventDefault();
+  const product = sanitize(document.getElementById('custProduct').value);
+  const qty     = parseFloat(document.getElementById('custQty').value);
+  const payment = sanitize(document.getElementById('custPayment').value);
+  if (!product || !qty) return;
+
+  const info    = PRODUCTS[product];
+  const total   = ((info?.price || 0) * qty).toFixed(0);
+  const orderId = 'ORD' + Date.now().toString(36).toUpperCase().slice(-6);
+  const order   = {
+    id: orderId, name: currentUser.name, phone: currentUser.phone,
+    address: storeGet('csdf_customers', {})[currentUser.phone]?.address || '',
+    product, qty, payment, notes: '', total,
+    timestamp: new Date().toISOString(), status: 'pending'
+  };
+
+  const orders = storeGet('csdf_orders', []);
+  orders.unshift(order);
+  storeSet('csdf_orders', orders);
+
+  const msg = `🐄 चैतन्या श्री डेरी फार्म\n━━━━━━━━━━━━━━━━\n📋 नया ऑर्डर #${orderId}\n\n👤 नाम: ${currentUser.name}\n📱 मोबाइल: ${currentUser.phone}\n\n🛒 प्रोडक्ट: ${product}\n⚖️ मात्रा: ${qty}\n💰 कुल: ₹${total}\n💳 भुगतान: ${payment}\n━━━━━━━━━━━━━━━━`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  loadOrders();
+  loadProfile();
+  showCustSection('orders', document.querySelectorAll('.cust-nav-item')[0]);
+}
+
+function generateCustInvoice(orderId) {
+  const orders = storeGet('csdf_orders', []);
+  const order  = orders.find(o => o.id === orderId);
+  if (!order) return;
+  const html = buildInvHTML(order);
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  window.open(url, '_blank');
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+function buildInvHTML(o) {
+  return `<!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><title>Invoice #${o.id}</title>
+<style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;color:#1a1a1a;padding:40px;max-width:600px;margin:0 auto;}.h{text-align:center;border-bottom:3px solid #2d7a1a;padding-bottom:20px;margin-bottom:30px;}.fn{font-size:1.5rem;font-weight:800;color:#1a4a0a;}.s{margin-bottom:24px;}.s h3{font-size:.9rem;font-weight:700;color:#2d7a1a;border-bottom:1px solid #e8f5e9;padding-bottom:6px;margin-bottom:12px;}.r{display:flex;justify-content:space-between;padding:6px 0;font-size:.9rem;}.rt{font-weight:800;font-size:1.1rem;color:#2d7a1a;border-top:2px solid #2d7a1a;padding-top:10px;margin-top:10px;}.ft{text-align:center;margin-top:40px;font-size:.82rem;color:#7a7a7a;border-top:1px solid #eee;padding-top:16px;}</style>
+</head><body>
+<div class="h"><div class="fn">🐄 चैतन्या श्री डेरी फार्म</div><div>बेगूं, चित्तौड़गढ़, राजस्थान</div><div>Invoice #${o.id} | ${new Date(o.timestamp).toLocaleDateString('hi-IN')}</div></div>
+<div class="s"><h3>ग्राहक की जानकारी</h3><div class="r"><span>नाम:</span><span>${o.name}</span></div><div class="r"><span>मोबाइल:</span><span>${o.phone}</span></div></div>
+<div class="s"><h3>ऑर्डर विवरण</h3><div class="r"><span>प्रोडक्ट:</span><span>${o.product}</span></div><div class="r"><span>मात्रा:</span><span>${o.qty}</span></div><div class="r"><span>भुगतान:</span><span>${o.payment}</span></div><div class="r rt"><span>कुल:</span><span>₹${o.total}</span></div></div>
+<div class="ft"><p>धन्यवाद! 🙏</p><p style="color:#2d7a1a;font-weight:600;margin-top:6px;">चैतन्या श्री डेरी फार्म</p></div>
+<script>window.onload=()=>window.print();<\/script></body></html>`;
+}
+
+function custLogout() {
+  storeSet('csdf_cust_auth', null);
+  window.location.href = 'index.html';
+}
+
+function escH(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+</body>
+</html>

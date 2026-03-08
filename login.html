@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Register – चैतन्या श्री डेरी फार्म</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+<a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> वेबसाइट पर वापस</a>
+
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">🐄</div>
+      <h1>चैतन्या श्री डेरी</h1>
+      <p class="hindi-text">अपने अकाउंट में प्रवेश करें</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="login-tabs">
+      <button class="login-tab active" onclick="switchTab('login')">Login</button>
+      <button class="login-tab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <!-- Error / Success -->
+    <div id="authError" class="error-msg"><i class="fas fa-exclamation-circle"></i> <span id="authErrorMsg"></span></div>
+    <div id="authSuccess" class="success-msg"><i class="fas fa-check-circle"></i> <span id="authSuccessMsg"></span></div>
+
+    <!-- ===== LOGIN ===== -->
+    <div class="login-form-section active" id="loginSection">
+      <form onsubmit="loginCustomer(event)">
+        <div class="form-group">
+          <label class="hindi-text"><i class="fas fa-phone"></i> मोबाइल नंबर</label>
+          <input type="tel" id="loginPhone" placeholder="10 अंकों का नंबर" pattern="[6-9][0-9]{9}" required autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="loginPass" placeholder="Password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-login-submit hindi-text">
+          <i class="fas fa-sign-in-alt"></i> Login करें
+        </button>
+      </form>
+
+      <div class="login-divider">या</div>
+      <a href="https://wa.me/917878066868?text=मेरा मोबाइल नंबर: " target="_blank">
+        <button type="button" class="btn-whatsapp-login">
+          <i class="fab fa-whatsapp"></i> WhatsApp से Login करें
+        </button>
+      </a>
+    </div>
+
+    <!-- ===== REGISTER ===== -->
+    <div class="login-form-section" id="registerSection">
+      <form onsubmit="registerCustomer(event)">
+        <div class="form-group">
+          <label class="hindi-text"><i class="fas fa-user"></i> पूरा नाम</label>
+          <input type="text" id="regName" placeholder="आपका पूरा नाम" required />
+        </div>
+        <div class="form-group">
+          <label class="hindi-text"><i class="fas fa-phone"></i> मोबाइल नंबर</label>
+          <input type="tel" id="regPhone" placeholder="10 अंकों का नंबर" pattern="[6-9][0-9]{9}" required autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label class="hindi-text"><i class="fas fa-map-marker-alt"></i> पता</label>
+          <input type="text" id="regAddress" placeholder="गाँव/शहर, जिला" required />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Password बनाएं</label>
+          <input type="password" id="regPass" placeholder="कम से कम 6 अंक" minlength="6" required autocomplete="new-password" />
+        </div>
+        <button type="submit" class="btn-login-submit hindi-text">
+          <i class="fas fa-user-plus"></i> Register करें
+        </button>
+      </form>
+    </div>
+
+    <div class="login-footer hindi-text">
+      <a href="index.html">🏠 होम पेज पर जाएँ</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function sanitize(str) {
+  return String(str).replace(/<[^>]*>/g, '').trim();
+}
+function validatePhone(p) {
+  return /^[6-9][0-9]{9}$/.test(p.replace(/\s/g, ''));
+}
+function storeGet(k, d = null) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }
+function storeSet(k, v)        { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+
+function switchTab(tab) {
+  document.querySelectorAll('.login-tab').forEach((t, i) => t.classList.toggle('active', (i === 0) === (tab === 'login')));
+  document.getElementById('loginSection').classList.toggle('active', tab === 'login');
+  document.getElementById('registerSection').classList.toggle('active', tab === 'register');
+  hideMessages();
+}
+
+function showError(msg)   { const e = document.getElementById('authError');   const m = document.getElementById('authErrorMsg');   if (m) m.textContent = msg; if (e) e.classList.add('show'); document.getElementById('authSuccess')?.classList.remove('show'); }
+function showSuccess(msg) { const e = document.getElementById('authSuccess'); const m = document.getElementById('authSuccessMsg'); if (m) m.textContent = msg; if (e) e.classList.add('show'); document.getElementById('authError')?.classList.remove('show'); }
+function hideMessages()   { document.getElementById('authError')?.classList.remove('show'); document.getElementById('authSuccess')?.classList.remove('show'); }
+
+function loginCustomer(e) {
+  e.preventDefault();
+  const phone = sanitize(document.getElementById('loginPhone').value);
+  const pass  = sanitize(document.getElementById('loginPass').value);
+
+  if (!validatePhone(phone)) return showError('सही 10 अंकों का मोबाइल नंबर डालें।');
+
+  const customers = storeGet('csdf_customers', {});
+  const cust = customers[phone];
+  if (!cust) return showError('यह नंबर रजिस्टर नहीं है। पहले Register करें।');
+  if (cust.pass !== pass) return showError('Password गलत है।');
+
+  storeSet('csdf_cust_auth', { phone, name: cust.name, loggedIn: true });
+  showSuccess('Login सफल! आपकी प्रोफाइल खुल रही है...');
+  setTimeout(() => { window.location.href = 'customer.html'; }, 1200);
+}
+
+function registerCustomer(e) {
+  e.preventDefault();
+  const name    = sanitize(document.getElementById('regName').value);
+  const phone   = sanitize(document.getElementById('regPhone').value);
+  const address = sanitize(document.getElementById('regAddress').value);
+  const pass    = sanitize(document.getElementById('regPass').value);
+
+  if (!validatePhone(phone)) return showError('सही 10 अंकों का मोबाइल नंबर डालें।');
+  if (pass.length < 6)       return showError('Password कम से कम 6 अंकों का होना चाहिए।');
+
+  const customers = storeGet('csdf_customers', {});
+  if (customers[phone])      return showError('यह नंबर पहले से रजिस्टर है। Login करें।');
+
+  customers[phone] = { name, phone, address, pass, createdAt: new Date().toISOString() };
+  storeSet('csdf_customers', customers);
+  storeSet('csdf_cust_auth', { phone, name, loggedIn: true });
+  showSuccess('Registration सफल! आपकी प्रोफाइल खुल रही है...');
+  setTimeout(() => { window.location.href = 'customer.html'; }, 1200);
+}
+</script>
+</body>
+</html>

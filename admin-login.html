@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – चैतन्या श्री डेरी फार्म</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+<a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Website</a>
+
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">🐄</div>
+      <h1>चैतन्या श्री डेरी</h1>
+      <p>Admin Panel Login</p>
+    </div>
+
+    <div id="loginError" class="error-msg">
+      <i class="fas fa-exclamation-circle"></i> <span id="loginErrorMsg">Invalid credentials</span>
+    </div>
+
+    <form onsubmit="adminLogin(event)">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Username</label>
+        <input type="text" id="adminUser" placeholder="admin" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="adminPass" placeholder="Password" required autocomplete="current-password" />
+        <p class="input-help">Default: admin / admin123</p>
+      </div>
+      <button type="submit" class="btn-login-submit">
+        <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <a href="index.html"><i class="fas fa-home"></i> Back to Website</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function sanitize(str) {
+    return String(str).replace(/<[^>]*>/g, '').trim();
+  }
+
+  function adminLogin(e) {
+    e.preventDefault();
+    const user = sanitize(document.getElementById('adminUser').value);
+    const pass = sanitize(document.getElementById('adminPass').value);
+
+    const storedPass = (() => { try { const v = localStorage.getItem('csdf_admin_pass'); return v ? JSON.parse(v) : 'admin123'; } catch { return 'admin123'; } })();
+
+    if (user === 'admin' && pass === storedPass) {
+      localStorage.setItem('csdf_admin_auth', JSON.stringify(true));
+      window.location.href = 'admin.html';
+    } else {
+      const errEl  = document.getElementById('loginError');
+      const errMsg = document.getElementById('loginErrorMsg');
+      if (errMsg) errMsg.textContent = 'Invalid username or password.';
+      if (errEl)  errEl.classList.add('show');
+      document.getElementById('adminPass').value = '';
+    }
+  }
+</script>
+</body>
+</html>
