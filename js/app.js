@@ -4,7 +4,7 @@
 
 // ===== CONFIG =====
 const CONFIG = {
-  whatsappNumber: '917878066868',
+  whatsappNumber: '918290392802',
   farmName: 'चैतन्या श्री डेरी फार्म',
   currency: '₹',
   products: {
