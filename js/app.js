@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .forEach(sel => document.querySelectorAll(sel).forEach(el => el.classList.add('fade-in-up')));
   scrollObserver.disconnect();
   document.querySelectorAll('.fade-in-up').forEach(el => scrollObserver.observe(el));
+
+  // Show once-per-browser reminder for wholesale mawa orders.
+  initWholesalePopup();
 });
 
 // ===== PRODUCT PRICE CALCULATOR (main form) =====
@@ -249,6 +252,20 @@ function closeAllModals() {
   if (overlay) overlay.classList.remove('active');
   document.body.style.overflow = '';
 }
+
+function initWholesalePopup() {
+  const popup = document.getElementById('wholesalePopupModal');
+  if (!popup) return;
+
+  // Show on every fresh page open so users always see the wholesale notice.
+  setTimeout(() => openModal('wholesalePopupModal'), 700);
+}
+
+function closeWholesalePopup() {
+  closeModal('wholesalePopupModal');
+}
+
+window.closeWholesalePopup = closeWholesalePopup;
 
 // Close modals on Escape
 document.addEventListener('keydown', e => e.key === 'Escape' && closeAllModals());
