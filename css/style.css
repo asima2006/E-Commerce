@@ -1,33 +1,45 @@
 /* ============================================================
    CHAITANYA SHRI DAIRY FARM – MAIN STYLESHEET
-   Theme: Maroon + Forest Green + Saffron Gold on Golden Cream
-   (Inspired by traditional Indian dairy farm banner aesthetic)
+   Theme: Deep Forest Green + Saffron Gold on Organic White-Green
+   (Clean organic dairy farm aesthetic)
    ============================================================ */
 
 /* ===== CSS VARIABLES ===== */
 :root {
-  /* Deep Maroon – primary dark / headings / footer / subscription bg */
-  --green-dark:   #6b1212;
-  /* Forest Green – organic / nature accent icons / order buttons */
-  --green-main:   #1d7a25;
-  --green-light:  #3aad4a;
-  --green-pale:   #e4f0e6;
-  /* Saffron / Amber – warm accent buttons, section tags, borders */
-  --gold:         #c8820a;
-  --gold-light:   #e8a820;
-  --gold-bright:  #f5c040;
-  /* Warm Cream / Golden backgrounds – matches parchment banner feel */
-  --cream:        #fdf5d8;
-  --cream-dark:   #f5e2a0;
-  --saffron-pale: #fdf3d0;
-  --maroon-pale:  #f9eded;
+  /* Theme: Inspired by Chaitanya Shri Organic Dairy Farm Banner */
+  
+  /* Brand Colors */
+  --brand-red:    #b71c1c; /* Deep Red/Rust - Main Brand Name Color */
+  --brown-dark:   #3e2723; /* Dark Coffee Brown - Footer/Address Bars */
+  
+  /* Primary Mappings */
+  --green-dark:   var(--brown-dark); /* Using Dark Brown for main text/headings to match address bar */
+  --green-main:   #2e7d32; /* Forest Green - Organic accents */
+  --green-light:  #4caf50;
+  --green-pale:   #e8f5e9;
+  
+  /* Gold/Yellow Accents */
+  --gold:         #fbc02d; /* Bright Golden Yellow */
+  --gold-light:   #fdd835;
+  --gold-bright:  #fff176;
+
+  /* Backgrounds - Warm Cream/Yellowish Tone */
+  --cream:        #fffde7; /* Light Yellowish Cream (Banner Background) */
+  --cream-dark:   #fff9c4; /* Slightly darker yellow cream */
+  --saffron-pale: #fff3e0;
+  --maroon-pale:  #fbe9e7;
   --white:        #ffffff;
-  --text-dark:    #1a1a1a;
-  --text-mid:     #4a4a4a;
-  --text-light:   #7a7a7a;
-  --shadow-sm:    0 2px 12px rgba(107,18,18,0.08);
-  --shadow-md:    0 8px 32px rgba(107,18,18,0.12);
-  --shadow-lg:    0 20px 60px rgba(0,0,0,0.18);
+  
+  /* Text Colors */
+  --text-dark:    #3e2723; /* Dark Brown */
+  --text-mid:     #5d4037; /* Medium Brown */
+  --text-light:   #8d6e63;
+  
+  /* Shadows */
+  --shadow-sm:    0 2px 12px rgba(62, 39, 35, 0.08);
+  --shadow-md:    0 8px 32px rgba(62, 39, 35, 0.12);
+  --shadow-lg:    0 20px 60px rgba(62, 39, 35, 0.18);
+  
   --radius-sm:    8px;
   --radius-md:    16px;
   --radius-lg:    24px;
@@ -147,8 +159,9 @@ section { padding: 80px 0; }
   font-family: var(--font-hindi);
   font-size: 1.2rem;
   font-weight: 800;
-  color: var(--green-dark);
+  color: var(--brand-red); /* Updated to Brand Red */
   line-height: 1.1;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
 }
 .brand-tagline {
   display: block;
@@ -210,7 +223,7 @@ section { padding: 80px 0; }
 .hero-video-bg {
   position: absolute; inset: 0;
   background:
-    linear-gradient(135deg, rgba(107,18,18,0.90) 0%, rgba(29,122,37,0.60) 55%, rgba(200,130,10,0.50) 100%),
+    linear-gradient(135deg, rgba(10,60,5,0.88) 0%, rgba(29,122,37,0.65) 55%, rgba(200,130,10,0.45) 100%),
     url('images/hero-bg.jpg') center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
   width: 100%;
@@ -239,12 +252,12 @@ section { padding: 80px 0; }
 .hero-title {
   font-size: clamp(2.4rem, 6vw, 4.5rem);
   font-weight: 900;
-  color: var(--white);
+  color: #fff9c4; /* Cream/Yellow for contrast on dark bg */
   line-height: 1.15;
   margin-bottom: 20px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(62, 39, 35, 0.8), 0 0 20px rgba(183, 28, 28, 0.4);
 }
-.accent-gold { color: var(--gold-light); }
+.accent-gold { color: var(--gold); }
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.3rem);
   color: rgba(255,255,255,0.9);
@@ -463,6 +476,23 @@ section { padding: 80px 0; }
   letter-spacing: 0.5px;
 }
 .product-icon { font-size: 3rem; margin-bottom: 16px; }
+
+/* Product Image Wrapper */
+.product-img-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+}
+.product-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.08); }
+
 .product-info { flex: 1; display: flex; flex-direction: column; }
 .product-info h3 {
   font-size: 1.2rem;
@@ -1024,15 +1054,15 @@ section { padding: 80px 0; }
 }
 .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.82rem; }
 
-/* ===== WHATSAPP & CALL FLOATS ===== */
+/* ===== WHATSAPP & CALL & INSTAGRAM FLOATS ===== */
 .whatsapp-float {
   position: fixed; bottom: 30px; right: 30px; z-index: 999;
-  width: 60px; height: 60px;
+  width: 58px; height: 58px;
   background: #25d366;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--white);
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   box-shadow: 0 4px 20px rgba(37,211,102,0.4);
   transition: var(--transition);
   animation: pulse 2.5s infinite;
@@ -1042,7 +1072,7 @@ section { padding: 80px 0; }
   transform: scale(1.1);
 }
 .whatsapp-tooltip {
-  position: absolute; right: 72px; top: 50%;
+  position: absolute; right: 68px; top: 50%;
   transform: translateY(-50%);
   background: var(--white);
   color: var(--text-dark);
@@ -1056,20 +1086,149 @@ section { padding: 80px 0; }
   transition: var(--transition);
 }
 .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; }
+
 .call-float {
-  position: fixed; bottom: 30px; right: 100px; z-index: 999;
+  position: fixed; bottom: 102px; right: 30px; z-index: 999;
   width: 50px; height: 50px;
-  background: var(--gold);
+  background: #1a73e8;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--white);
-  font-size: 1.2rem;
-  box-shadow: 0 4px 16px rgba(200,130,10,0.45);
+  font-size: 1.15rem;
+  box-shadow: 0 4px 16px rgba(26,115,232,0.45);
   transition: var(--transition);
 }
 .call-float:hover {
-  background: #a06808;
+  background: #1558b0;
   transform: scale(1.1);
+}
+
+.instagram-float {
+  position: fixed; bottom: 166px; right: 30px; z-index: 999;
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+  font-size: 1.15rem;
+  box-shadow: 0 4px 16px rgba(221,42,123,0.40);
+  transition: var(--transition);
+}
+.instagram-float:hover {
+  opacity: 0.88;
+  transform: scale(1.1);
+}
+
+/* ===== PRODUCT IMAGE ===== */
+.product-img-wrap {
+  width: 100%; height: 180px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--green-pale);
+  display: flex; align-items: center; justify-content: center;
+}
+.product-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+/* ===== PRICE STRIKETHROUGH ===== */
+.price-old {
+  font-size: 1rem;
+  color: var(--text-light);
+  text-decoration: line-through;
+  font-weight: 500;
+  margin-left: 6px;
+}
+.price-discount {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #1d7a25;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 50px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ===== VIDEO SECTION ===== */
+.video-section {
+  background: var(--green-dark);
+  overflow: hidden;
+  position: relative;
+}
+.video-section::before {
+  content: '';
+  position: absolute; top: -80px; left: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(200,130,10,0.15), transparent);
+  border-radius: 50%;
+}
+.video-section .section-title { color: var(--white); }
+.video-section .section-subtitle { color: rgba(255,255,255,0.7); }
+.video-section .section-tag {
+  background: rgba(200,130,10,0.25);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+}
+.video-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #0a3c05 0%, #1a5c0a 50%, #1d7a25 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+.video-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('images/farm-main.jpg') center/cover no-repeat;
+  opacity: 0.25;
+}
+.video-play-btn {
+  position: relative; z-index: 1;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  color: var(--green-dark);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  transition: var(--transition);
+}
+.video-placeholder:hover .video-play-btn {
+  transform: scale(1.12);
+  background: var(--gold);
+  color: var(--white);
+}
+.video-caption {
+  position: relative; z-index: 1;
+  color: rgba(255,255,255,0.9);
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-family: var(--font-hindi);
+  text-align: center;
+}
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  display: block;
 }
 
 /* ===== MODAL ===== */
@@ -1245,7 +1404,8 @@ section { padding: 80px 0; }
   .products-grid { grid-template-columns: 1fr; }
   .subscription-grid { grid-template-columns: 1fr; }
   .whatsapp-float { width: 52px; height: 52px; font-size: 1.5rem; }
-  .call-float { right: 92px; }
+  .call-float { bottom: 96px; right: 30px; }
+  .instagram-float { bottom: 158px; right: 30px; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .review-card::before { display: none; }
 }

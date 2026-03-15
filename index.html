@@ -13,7 +13,7 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-brand">
-    <span class="brand-icon">🐄</span>
+    <img src="images/logo.jpeg" alt="चैतन्या श्री डेरी" style="height:48px;width:48px;border-radius:50%;object-fit:cover;" />
     <div>
       <span class="brand-name">चैतन्या श्री डेरी</span>
       <span class="brand-tagline">Pure Farm Direct</span>
@@ -33,6 +33,142 @@
   </div>
 </nav>
 
+<!-- ===== PRODUCTS SECTION ===== -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag hindi-text">हमारे उत्पाद</div>
+      <h2 class="section-title hindi-text">ताज़ा और शुद्ध डेरी उत्पाद</h2>
+      <p class="section-subtitle hindi-text">सीधे फार्म से – बिना मिलावट</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- Product 1 - Milk -->
+      <div class="product-card featured">
+        <div class="product-badge">Best Seller</div>
+        <div class="product-img-wrap">
+          <img src="images/milk.jpg" alt="A2 देसी गाय का दूध" />
+        </div>
+        <div class="product-info">
+          <h3 class="hindi-text">A2 देसी गाय का दूध</h3>
+          <div class="product-specs">
+            <span class="spec"><i class="fas fa-tint"></i> Fat: 4.5%+</span>
+            <span class="spec"><i class="fas fa-check"></i> A2 Protein</span>
+          </div>
+          <p class="product-desc hindi-text">शुद्ध देसी गाय का दूध, ताज़ा हर सुबह</p>
+          <div class="product-price">
+            <span class="price">₹60</span>
+            <span class="price-old">₹80</span>
+            <span class="price-discount">25% OFF</span>
+            <span class="price-unit hindi-text">/ लीटर</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn-subscribe hindi-text" onclick="openSubscription('A2 देसी गाय का दूध')"><i class="fas fa-calendar-alt"></i> Subscribe Monthly</button>
+            <button class="btn-order-now hindi-text" onclick="openOrder('A2 देसी गाय का दूध', 60)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 - Ghee -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="images/ghee.png" alt="बिलौना देसी घी" />
+        </div>
+        <div class="product-info">
+          <h3 class="hindi-text">बिलौना देसी घी</h3>
+          <div class="product-specs">
+            <span class="spec"><i class="fas fa-fire"></i> लकड़ी की आंच पर बना</span>
+            <span class="spec"><i class="fas fa-star"></i> Premium Quality</span>
+          </div>
+          <p class="product-desc hindi-text">पारंपरिक विधि से बना शुद्ध बिलौना घी</p>
+          <div class="product-price">
+            <span class="price">₹2,200</span>
+            <span class="price-old">₹3,200</span>
+            <span class="price-discount">31% OFF</span>
+            <span class="price-unit hindi-text">/ किलो</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn-order-now hindi-text" onclick="openOrder('बिलौना देसी घी', 2200)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 - Paneer -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="images/paneer.jpg" alt="ताज़ा पनीर" />
+        </div>
+        <div class="product-info">
+          <h3 class="hindi-text">ताज़ा पनीर</h3>
+          <div class="product-specs">
+            <span class="spec"><i class="fas fa-clock"></i> उसी दिन तैयार</span>
+            <span class="spec"><i class="fas fa-leaf"></i> Fresh Daily</span>
+          </div>
+          <p class="product-desc hindi-text">ताज़े दूध से उसी दिन बनाया गया नरम पनीर</p>
+          <div class="product-price">
+            <span class="price">₹400</span>
+            <span class="price-old">₹700</span>
+            <span class="price-discount">43% OFF</span>
+            <span class="price-unit hindi-text">/ किलो</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn-order-now hindi-text" onclick="openOrder('ताज़ा पनीर', 400)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 - Dahi -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="images/curd.jpg" alt="घर जैसा दही" />
+        </div>
+        <div class="product-info">
+          <h3 class="hindi-text">घर जैसा दही</h3>
+          <div class="product-specs">
+            <span class="spec"><i class="fas fa-heart"></i> बिना स्टार्टर के</span>
+            <span class="spec"><i class="fas fa-smile"></i> Probiotic Rich</span>
+          </div>
+          <p class="product-desc hindi-text">प्राकृतिक तरीके से जमाया गया शुद्ध दही</p>
+          <div class="product-price">
+            <span class="price">₹80</span>
+            <span class="price-old">₹100</span>
+            <span class="price-discount">20% OFF</span>
+            <span class="price-unit hindi-text">/ किलो</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn-order-now hindi-text" onclick="openOrder('घर जैसा दही', 80)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 - Mawa / Khoya -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="images/mawa.png" alt="ताज़ा मावा (खोया)" />
+        </div>
+        <div class="product-info">
+          <h3 class="hindi-text">ताज़ा मावा (खोया)</h3>
+          <div class="product-specs">
+            <span class="spec"><i class="fas fa-fire"></i> धीमी आंच पर बना</span>
+            <span class="spec"><i class="fas fa-leaf"></i> Fresh Daily</span>
+          </div>
+          <p class="product-desc hindi-text">शुद्ध दूध से बना ताज़ा मावा – मिठाई के लिए परफेक्ट</p>
+          <div class="product-price">
+            <span class="price">₹210</span>
+            <span class="price-old">₹260</span>
+            <span class="price-discount">19% OFF</span>
+            <span class="price-unit hindi-text">/ किलो</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn-order-now hindi-text" onclick="openOrder('ताज़ा मावा (खोया)', 210)"><i class="fas fa-shopping-cart"></i> Order Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===== HERO SECTION ===== -->
 <section class="hero" id="home">
   <div class="hero-video-bg">
@@ -40,8 +176,8 @@
     <div class="hero-content">
       <div class="hero-badge">🌿 100% Natural & Pure</div>
       <h1 class="hero-title">
-        <span class="hindi-text">100% शुद्ध देसी दूध</span><br/>
-        <span class="hindi-text accent-gold">और बिलौना घी</span>
+        <span class="hindi-text" style="color:var(--brand-red); text-shadow: 1px 1px 0 #fff, 0 0 10px rgba(0,0,0,0.2);">चैतन्या श्री ऑर्गेनिक</span><br/>
+        <span class="hindi-text accent-gold">डेरी फार्म</span>
       </h1>
       <p class="hero-subtitle hindi-text">सीधे फार्म से आपके घर तक – बिना किसी मिलावट के</p>
       <div class="hero-stats">
@@ -131,101 +267,33 @@
   </div>
 </section>
 
-<!-- ===== PRODUCTS SECTION ===== -->
-<section class="products-section" id="products">
+<!-- ===== VIDEO SECTION ===== -->
+<section class="video-section" id="video">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag hindi-text">हमारे उत्पाद</div>
-      <h2 class="section-title hindi-text">ताज़ा और शुद्ध डेरी उत्पाद</h2>
-      <p class="section-subtitle hindi-text">सीधे फार्म से – बिना मिलावट</p>
+      <div class="section-tag hindi-text">हमारा फार्म</div>
+      <h2 class="section-title hindi-text">हमारा फार्म देखें</h2>
+      <p class="section-subtitle hindi-text">जानें कैसे बनता है हमारा शुद्ध देसी घी और दूध</p>
     </div>
-    <div class="products-grid">
-
-      <!-- Product 1 - Milk -->
-      <div class="product-card featured">
-        <div class="product-badge">Best Seller</div>
-        <div class="product-icon">🥛</div>
-        <div class="product-info">
-          <h3 class="hindi-text">A2 देसी गाय का दूध</h3>
-          <div class="product-specs">
-            <span class="spec"><i class="fas fa-tint"></i> Fat: 4.5%+</span>
-            <span class="spec"><i class="fas fa-check"></i> A2 Protein</span>
-          </div>
-          <p class="product-desc hindi-text">शुद्ध देसी गाय का दूध, ताज़ा हर सुबह</p>
-          <div class="product-price">
-            <span class="price">₹70</span>
-            <span class="price-unit hindi-text">/ लीटर</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-subscribe hindi-text" onclick="openSubscription('A2 देसी गाय का दूध')"><i class="fas fa-calendar-alt"></i> Subscribe Monthly</button>
-            <button class="btn-order-now hindi-text" onclick="openOrder('A2 देसी गाय का दूध', 70)"><i class="fas fa-shopping-cart"></i> Order Now</button>
-          </div>
-        </div>
+    <div class="video-wrapper">
+      <!-- Replace the src below with your actual YouTube embed URL -->
+      <!-- Example: src="https://www.youtube.com/embed/YOUR_VIDEO_ID" -->
+      <div class="video-placeholder" onclick="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <div class="video-play-btn"><i class="fas fa-play"></i></div>
+        <p class="video-caption hindi-text">▶ हमारे फार्म की वीडियो देखें – जल्द आ रहा है</p>
       </div>
-
-      <!-- Product 2 - Ghee -->
-      <div class="product-card">
-        <div class="product-icon">🧈</div>
-        <div class="product-info">
-          <h3 class="hindi-text">बिलौना देसी घी</h3>
-          <div class="product-specs">
-            <span class="spec"><i class="fas fa-fire"></i> लकड़ी की आंच पर बना</span>
-            <span class="spec"><i class="fas fa-star"></i> Premium Quality</span>
-          </div>
-          <p class="product-desc hindi-text">पारंपरिक विधि से बना शुद्ध बिलौना घी</p>
-          <div class="product-price">
-            <span class="price">₹1400</span>
-            <span class="price-unit hindi-text">/ किलो</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-order-now hindi-text" onclick="openOrder('बिलौना देसी घी', 1400)"><i class="fas fa-shopping-cart"></i> Order Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 3 - Paneer -->
-      <div class="product-card">
-        <div class="product-icon">🧀</div>
-        <div class="product-info">
-          <h3 class="hindi-text">ताज़ा पनीर</h3>
-          <div class="product-specs">
-            <span class="spec"><i class="fas fa-clock"></i> उसी दिन तैयार</span>
-            <span class="spec"><i class="fas fa-leaf"></i> Fresh Daily</span>
-          </div>
-          <p class="product-desc hindi-text">ताज़े दूध से उसी दिन बनाया गया नरम पनीर</p>
-          <div class="product-price">
-            <span class="price">₹380</span>
-            <span class="price-unit hindi-text">/ किलो</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-order-now hindi-text" onclick="openOrder('ताज़ा पनीर', 380)"><i class="fas fa-shopping-cart"></i> Order Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 4 - Dahi -->
-      <div class="product-card">
-        <div class="product-icon">🥣</div>
-        <div class="product-info">
-          <h3 class="hindi-text">घर जैसा दही</h3>
-          <div class="product-specs">
-            <span class="spec"><i class="fas fa-heart"></i> बिना स्टार्टर के</span>
-            <span class="spec"><i class="fas fa-smile"></i> Probiotic Rich</span>
-          </div>
-          <p class="product-desc hindi-text">प्राकृतिक तरीके से जमाया गया शुद्ध दही</p>
-          <div class="product-price">
-            <span class="price">₹90</span>
-            <span class="price-unit hindi-text">/ किलो</span>
-          </div>
-          <div class="product-actions">
-            <button class="btn-order-now hindi-text" onclick="openOrder('घर जैसा दही', 90)"><i class="fas fa-shopping-cart"></i> Order Now</button>
-          </div>
-        </div>
-      </div>
-
+      <iframe
+        style="display:none;"
+        src="https://www.youtube.com/embed/?autoplay=1"
+        title="Chaitanya Shri Dairy Farm Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
+
+
 
 <!-- ===== ORDER FORM ===== -->
 <section class="order-section" id="order">
@@ -257,10 +325,11 @@
               <label class="hindi-text"><i class="fas fa-box"></i> प्रोडक्ट चुनें *</label>
               <select id="productSelect" required onchange="updateProductPrice()">
                 <option value="">-- प्रोडक्ट चुनें --</option>
-                <option value="A2 देसी गाय का दूध" data-price="70">A2 देसी गाय का दूध – ₹70/लीटर</option>
-                <option value="बिलौना देसी घी" data-price="1400">बिलौना देसी घी – ₹1400/किलो</option>
-                <option value="ताज़ा पनीर" data-price="380">ताज़ा पनीर – ₹380/किलो</option>
-                <option value="घर जैसा दही" data-price="90">घर जैसा दही – ₹90/किलो</option>
+                <option value="A2 देसी गाय का दूध" data-price="60">A2 देसी गाय का दूध – ₹60/लीटर</option>
+                <option value="बिलौना देसी घी" data-price="2200">बिलौना देसी घी – ₹2,200/किलो</option>
+                <option value="ताज़ा पनीर" data-price="400">ताज़ा पनीर – ₹400/किलो</option>
+                <option value="घर जैसा दही" data-price="80">घर जैसा दही – ₹80/किलो</option>
+                <option value="ताज़ा मावा (खोया)" data-price="210">ताज़ा मावा (खोया) – ₹210/किलो</option>
               </select>
             </div>
             <div class="form-group">
@@ -568,6 +637,11 @@
 <!-- ===== CALL FLOATING BUTTON ===== -->
 <a href="tel:+918290392802" class="call-float" aria-label="Call Now">
   <i class="fas fa-phone"></i>
+</a>
+
+<!-- ===== INSTAGRAM FLOATING BUTTON ===== -->
+<a href="https://www.instagram.com/Chaitanya_dairy_farm_09" target="_blank" class="instagram-float" aria-label="Instagram">
+  <i class="fab fa-instagram"></i>
 </a>
 
 <!-- ===== ORDER MODAL ===== -->
