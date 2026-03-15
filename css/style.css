@@ -426,7 +426,19 @@ section { padding: 80px 0; }
 .about-feat i { color: var(--gold); font-size: 1rem; }
 
 /* ===== PRODUCTS SECTION ===== */
-.products-section { background: var(--white); }
+.products-section {
+  background: var(--white);
+  padding-top: 140px;
+}
+.products-section .section-tag {
+  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 10px 24px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(62, 39, 35, 0.18);
+  box-shadow: 0 8px 20px rgba(251, 192, 45, 0.25);
+}
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
